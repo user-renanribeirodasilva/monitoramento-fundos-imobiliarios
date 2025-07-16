@@ -12,6 +12,11 @@ O objetivo é que o investidor adicione as informações de seus fundos imobili�
 - Proventos
 - Valor aplicado (talvez não seja necessário)
 
-Com base nas informações fornecidas, pretendo automatizar as demais colunas finais para que as informações sejam trazidas automaticamente.
+Com base nas informações fornecidas, pretendo automatizar as demais colunas finais para que as informações sejam trazidas automaticamente. Obs: Os dados são simulados.
 
 ![Planilha Excel](imagens/PlanilhaExcel.png)
+
+### Próximas implementações:
+- Automatizar o preenchimento de algumas colunas usando python
+- Adicionar a coluna de mês
+- Verificar outras alterações possíveis, principalmente em relação a visualização do Dashboard.
