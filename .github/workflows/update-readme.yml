@@ -18,7 +18,7 @@ jobs:
       run: |
         echo "# Relatórios Power BI" > README.md
         echo "" >> README.md
-        echo "📅 Última atualização: $(date -u)" >> README.md
+        echo "📅 Última atualização: $(LC_TIME=pt_BR.UTF-8 TZ=America/Sao_Paulo date '+%A, %d de %B de %Y - %H:%M')" >> README.md
         echo "" >> README.md
         echo "📂 Arquivos no repositório:" >> README.md
         find . -type f \( -iname "*.pbix" -o -iname "*.xlsx" \) >> README.md
