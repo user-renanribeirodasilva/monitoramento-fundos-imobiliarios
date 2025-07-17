@@ -21,11 +21,18 @@ jobs:
         ANTIGO=$(cat README.md)
         echo -e "$INFO\n$LISTA\n\n$ANTIGO" > README.md
 
-
     - name: Fazer commit e push
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add README.md
-        git commit -m "Atualiza README automaticamente"
-        git push
+
+        if ! git diff --cached --quiet; then
+          git commit -m "Atualiza README automaticamente"
+        else
+          echo "Nenhuma alteração para commitar"
+        fi
+
+        git pull --rebase origin main || echo "Pull falhou, ignorando para evitar erro"
+
+        git push origin main
