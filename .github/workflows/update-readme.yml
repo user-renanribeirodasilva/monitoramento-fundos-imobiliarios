@@ -14,14 +14,13 @@ jobs:
     - name: Clonar repositório
       uses: actions/checkout@v3
 
-    - name: Gerar novo README
+    - name: Atualizar README mantendo conteúdo
       run: |
-        echo "# Relatórios Power BI" > README.md
-        echo "" >> README.md
-        echo "📅 Última atualização: $(date -u)" >> README.md
-        echo "" >> README.md
-        echo "📂 Arquivos no repositório:" >> README.md
-        find . -type f \( -iname "*.pbix" -o -iname "*.xlsx" \) >> README.md
+        INFO="## Relatórios Power BI\n📅 Última atualização: $(LC_TIME=pt_BR.UTF-8 TZ=America/Sao_Paulo date '+%A, %d de %B de %Y - %H:%M')\n\n📂 Arquivos no repositório:"
+        LISTA=$(find . -type f \( -iname "*.pbix" -o -iname "*.xlsx" \))
+        ANTIGO=$(cat README.md)
+        echo -e "$INFO\n$LISTA\n\n$ANTIGO" > README.md
+
 
     - name: Fazer commit e push
       run: |
