@@ -1,0 +1,32 @@
+name: Atualizar README com arquivos e data
+
+on:
+  push:
+    paths:
+      - '**.pbix'
+      - '**.xlsx'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+
+    - name: Gerar novo README
+      run: |
+        echo "# Relatórios Power BI" > README.md
+        echo "" >> README.md
+        echo "📅 Última atualização: $(date -u)" >> README.md
+        echo "" >> README.md
+        echo "📂 Arquivos no repositório:" >> README.md
+        find . -type f \( -iname "*.pbix" -o -iname "*.xlsx" \) >> README.md
+
+    - name: Fazer commit e push
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add README.md
+        git commit -m "Atualiza README automaticamente"
+        git push
